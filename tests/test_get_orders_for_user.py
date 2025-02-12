@@ -1,6 +1,6 @@
 import requests
 import allure
-
+from utils.text_constants import TextConstants
 from utils.ingredients_data import IngredientsData
 from utils.urls import URLS
 from utils.handlers import Handlers
@@ -21,4 +21,4 @@ class TestGetOrdersForUser:
     @allure.description('Пытаемся получить список заказов, не выполняя авторизацию')
     def test_get_orders_for_user_without_auth_return_error(self):
         resp =requests.get(f'{URLS.MAIN_URL}{Handlers.GET_ORDER}')
-        assert resp.status_code == 401 and resp.json()['message'] == 'You should be authorised'
+        assert resp.status_code == 401 and resp.json()['message'] == TextConstants.authorization_error

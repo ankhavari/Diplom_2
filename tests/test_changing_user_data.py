@@ -1,6 +1,6 @@
 import requests
 import allure
-
+from utils.text_constants import TextConstants
 from utils.urls import URLS
 from utils.handlers import Handlers
 from utils.user_data import UserData
@@ -37,4 +37,4 @@ class TestChangingUserData:
         'При попытке редактирования данных у неавторизованного пользователя, возвращается соответствующая ошибка')
     def test_change_user_dara_without_auth_return_error(self):
         resp = requests.patch(f'{URLS.MAIN_URL}{Handlers.USER_DATA}', headers=UserData.generating_user_data())
-        assert resp.status_code == 401 and resp.json()['message'] == 'You should be authorised'
+        assert resp.status_code == 401 and resp.json()['message'] == TextConstants.authorization_error
